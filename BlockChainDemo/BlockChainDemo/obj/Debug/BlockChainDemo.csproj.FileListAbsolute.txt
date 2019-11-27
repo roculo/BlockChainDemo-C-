@@ -1,0 +1,6 @@
+c:\users\84122\documents\visual studio 2015\Projects\BlockChainDemo\BlockChainDemo\bin\Debug\BlockChainDemo.exe.config
+c:\users\84122\documents\visual studio 2015\Projects\BlockChainDemo\BlockChainDemo\bin\Debug\BlockChainDemo.exe
+c:\users\84122\documents\visual studio 2015\Projects\BlockChainDemo\BlockChainDemo\bin\Debug\BlockChainDemo.pdb
+c:\users\84122\documents\visual studio 2015\Projects\BlockChainDemo\BlockChainDemo\obj\Debug\BlockChainDemo.csprojResolveAssemblyReference.cache
+c:\users\84122\documents\visual studio 2015\Projects\BlockChainDemo\BlockChainDemo\obj\Debug\BlockChainDemo.exe
+c:\users\84122\documents\visual studio 2015\Projects\BlockChainDemo\BlockChainDemo\obj\Debug\BlockChainDemo.pdb
