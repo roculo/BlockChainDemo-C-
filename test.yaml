@@ -1,0 +1,1571 @@
+openapi: 3.0.1
+info:
+  title: JConnect Mobile
+  description: >
+    This is a sample server Petstore server.
+
+    You can find out more about Swagger at
+
+    [http://swagger.io](http://swagger.io) or on [irc.freenode.net,
+    #swagger](http://swagger.io/irc/).
+
+    For this sample, you can use the api key `special-key` to test the
+    authorization filters.
+
+
+    # Introduction
+
+    This API is documented in **OpenAPI format** and is based on
+
+    [Petstore sample](http://petstore.swagger.io/) provided by
+    [swagger.io](http://swagger.io) team.
+
+    It was **extended** to illustrate features of
+    [generator-openapi-repo](https://github.com/Rebilly/generator-openapi-repo)
+
+    tool and [ReDoc](https://github.com/Redocly/redoc) documentation. In
+    addition to standard
+
+    OpenAPI syntax we use a few [vendor
+    extensions](https://github.com/Redocly/redoc/blob/master/docs/redoc-vendor-extensions.md).
+
+
+    # OpenAPI Specification
+
+    This API is documented in **OpenAPI format** and is based on
+
+    [Petstore sample](http://petstore.swagger.io/) provided by
+    [swagger.io](http://swagger.io) team.
+
+    It was **extended** to illustrate features of
+    [generator-openapi-repo](https://github.com/Rebilly/generator-openapi-repo)
+
+    tool and [ReDoc](https://github.com/Redocly/redoc) documentation. In
+    addition to standard
+
+    OpenAPI syntax we use a few [vendor
+    extensions](https://github.com/Redocly/redoc/blob/master/docs/redoc-vendor-extensions.md).
+
+
+    # Cross-Origin Resource Sharing
+
+    This API features Cross-Origin Resource Sharing (CORS) implemented in
+    compliance with  [W3C spec](https://www.w3.org/TR/cors/).
+
+    And that allows cross-domain communication from the browser.
+
+    All responses have a wildcard same-origin which makes them completely public
+    and accessible to everyone, including any code on any site.
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: apiteam@swagger.io
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 2.9.0
+servers:
+- url: https://192.168.1.228/call
+- url: http://192.168.1.228/call
+security:
+- default: []
+tags:
+- name: Deposit
+  description: Everything about your Deposit
+  externalDocs:
+    description: Find out more
+    url: http://swagger.io
+paths:
+  /login:
+    post:
+      tags:
+      - Deposit
+      summary: Login API
+      description: We will description login api here.
+      requestBody:
+        description: Request Body
+        content:
+          '*/*':
+            schema:
+              type: object
+              properties:
+                USERNAME:
+                  type: string
+                  example: usrname
+                PASSWORD:
+                  type: string
+                  example: password
+        required: false
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ERRORCODE:
+                    type: integer
+                    example: 0
+                  ERRORDESC:
+                    type: string
+                    example: Transaction successfully!
+                  RESULT:
+                    type: object
+                    properties:
+                      SESSIONID:
+                        type: string
+                        example: 00000170-38b1-876b-0000-017038b18774
+                      WORKINGDATE:
+                        type: string
+                        example: 13/02/2020
+      security:
+      - default:
+        - jgatewayrole
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+      x-codegen-request-body-name: Payload
+  /MB0000:
+    post:
+      tags:
+      - Deposit
+      summary: Reversal transaction
+      description: The function is to reverse the fund transfer transaction.
+      requestBody:
+        description: Request Body
+        content:
+          '*/*':
+            schema:
+              type: object
+              properties:
+                SESSIONID:
+                  type: string
+                  example: 00000171-a18e-1102-0000-0171a18e110b
+                TXREFCD:
+                  type: string
+                  example: "10000000000000005041"
+                ID:
+                  type: string
+                  example: TEST0000
+                DESCS:
+                  type: string
+                  example: Reversal Message!
+        required: false
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ERRORCODE:
+                    type: integer
+                    example: 0
+                  ERRORDESC:
+                    type: string
+                    example: Transaction successfully!
+                  RESULT:
+                    type: string
+                    example: ""
+      security:
+      - default:
+        - jgatewayrole
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+      x-codegen-request-body-name: Payload
+  /MB0001:
+    post:
+      tags:
+      - Deposit
+      summary: Get account list by customer code
+      description: 'This function will return account list of a customer by customer
+        code and customer type. '
+      requestBody:
+        description: Request Body
+        content:
+          '*/*':
+            schema:
+              type: object
+              properties:
+                CUSCODE:
+                  type: string
+                  example: "02031000799"
+                DPTTYPE:
+                  type: string
+                  example: C
+                ID:
+                  type: string
+                  example: TEST0000
+                DESCS:
+                  type: string
+                  example: Get account list by cuscode!
+                SESSIONID:
+                  type: string
+                  example: 00000171-a18e-1102-0000-0171a18e110b
+        required: false
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ERRORCODE:
+                    type: integer
+                    example: 0
+                  ERRORDESC:
+                    type: string
+                    example: Transaction successfully!
+                  RESULT:
+                    type: object
+                    properties:
+                      ACCNUM:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      ACCNAME:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      DPTTYPE:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      DPTSTS:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      BALANCE:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      AVABALANCE:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      CURRENCYID:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      BRANID:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      ISPKACNO:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      CUSCODE:
+                        type: string
+                        example: "02031000799"
+      security:
+      - default:
+        - jgatewayrole
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+      x-codegen-request-body-name: Payload
+  /MB0002:
+    post:
+      tags:
+      - Deposit
+      summary: Get account list by mobile number
+      description: This function will return account list of a customer by mobile
+        phone number.
+      requestBody:
+        description: Request Body
+        content:
+          '*/*':
+            schema:
+              type: object
+              properties:
+                PHONENO:
+                  type: string
+                  example: "0923888333"
+                DPTTYPE:
+                  type: string
+                  example: C
+                ID:
+                  type: string
+                  example: TEST0000
+                DESCS:
+                  type: string
+                  example: Get account list by mobile number!
+                SESSIONID:
+                  type: string
+                  example: 00000171-a18e-1102-0000-0171a18e110b
+        required: false
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ERRORCODE:
+                    type: integer
+                    example: 0
+                  ERRORDESC:
+                    type: string
+                    example: Transaction successfully!
+                  RESULT:
+                    type: object
+                    properties:
+                      ACCNUM:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      ACCNAME:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      DPTTYPE:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      DPTSTS:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      BALANCE:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      AVABALANCE:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      CURRENCYID:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      BRANID:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      ISPKACNO:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      PHONENO:
+                        type: string
+                        example: "0923888333"
+      security:
+      - default:
+        - jgatewayrole
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+      x-codegen-request-body-name: Payload
+  /MB0003:
+    post:
+      tags:
+      - Deposit
+      summary: Register new deposit account
+      description: The function is to register a deposit account.
+      requestBody:
+        description: Request Body
+        content:
+          '*/*':
+            schema:
+              type: object
+              properties:
+                CUSNAME:
+                  type: string
+                  example: TestCustomer
+                BRANID:
+                  type: string
+                  example: "203"
+                NATIONTYPE:
+                  type: string
+                  example: N
+                NATIONNUM:
+                  type: string
+                  example: "123456789"
+                DOB:
+                  type: string
+                  example: 14/02/2000
+                TITLE:
+                  type: string
+                  example: MR
+                ADDRESS:
+                  type: string
+                  example: Test
+                EMAIL:
+                  type: string
+                  example: testcustomer@gmail.com
+                HOMENUM:
+                  type: string
+                  example: ""
+                MOBILENUM:
+                  type: string
+                  example: "092123456789"
+                GENDER:
+                  type: string
+                  example: M
+                CTYPE:
+                  type: string
+                  example: S
+                PROVINCE:
+                  type: string
+                  example: ""
+                COMMUNE:
+                  type: string
+                  example: ""
+                VILLAGE:
+                  type: string
+                  example: ""
+                GRPNO:
+                  type: string
+                  example: ""
+                STRNO:
+                  type: string
+                  example: ""
+                HOUSENO:
+                  type: string
+                  example: ""
+                KYC:
+                  type: string
+                  example: 0X
+                ACCNAME:
+                  type: string
+                  example: TestAccount
+                CATCODE:
+                  type: string
+                  example: "123"
+                ACCTYPE:
+                  type: string
+                  example: "1"
+                ISPKACNO:
+                  type: string
+                  example: Y
+                ID:
+                  type: string
+                  example: TEST
+                SESSIONID:
+                  type: string
+                  example: 00000171-a18e-1102-0000-0171a18e110b
+        required: false
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ERRORCODE:
+                    type: integer
+                    example: 0
+                  ERRORDESC:
+                    type: string
+                    example: Transaction successfully!
+                  RESULT:
+                    type: object
+                    properties:
+                      CUSCODE:
+                        type: string
+                        example: "02031000799"
+                      ACCNUM:
+                        type: string
+                        example: "99990111100000217"
+      security:
+      - default:
+        - jgatewayrole
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+      x-codegen-request-body-name: Payload
+  /MB0004:
+    post:
+      tags:
+      - Deposit
+      summary: Get the detailed transaction history
+      description: The function is to get the detailed transaction history
+      requestBody:
+        description: Request Body
+        content:
+          '*/*':
+            schema:
+              type: object
+              properties:
+                CBSID:
+                  type: string
+                  example: "190914000008329776"
+                ID:
+                  type: string
+                  example: TEST0000
+                DESCS:
+                  type: string
+                  example: ""
+                SESSIONID:
+                  type: string
+                  example: 00000171-a18e-1102-0000-0171a18e110b
+        required: false
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ERRORCODE:
+                    type: integer
+                    example: 0
+                  ERRORDESC:
+                    type: string
+                    example: Transaction successfully!
+                  RESULT:
+                    type: object
+                    properties:
+                      CBSID:
+                        type: string
+                        example: "190914000008329776"
+                      TRANDATE:
+                        type: string
+                        example: 13/02/2020 19:36:59
+                      ACCNUM:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      DORC:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      AMT:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      DESCS:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      DEBITFEE:
+                        type: string
+                        example: "10"
+                      CREDITFEE:
+                        type: string
+                        example: "0"
+      security:
+      - default:
+        - jgatewayrole
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+      x-codegen-request-body-name: Payload
+  /MB0005:
+    post:
+      tags:
+      - Deposit
+      summary: Get the list of products
+      description: The function is to get the list of catalogues based on deposit
+        type.
+      requestBody:
+        description: Request Body
+        content:
+          '*/*':
+            schema:
+              type: object
+              properties:
+                DPTTYPE:
+                  type: string
+                  example: S
+                ID:
+                  type: string
+                  example: TEST0000
+                DESCS:
+                  type: string
+                  example: ""
+                SESSIONID:
+                  type: string
+                  example: 00000171-a18e-1102-0000-0171a18e110b
+        required: false
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ERRORCODE:
+                    type: integer
+                    example: 0
+                  ERRORDESC:
+                    type: string
+                    example: Transaction successfully!
+                  RESULT:
+                    type: object
+                    properties:
+                      CATCODE:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      CATNAME:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      STATUS:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      CURRENCYID:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      CATDESCS:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+      security:
+      - default:
+        - jgatewayrole
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+      x-codegen-request-body-name: Payload
+  /MB0006:
+    post:
+      tags:
+      - Deposit
+      summary: Check customer information by ID Card number
+      description: The function is to check if the customer exists
+      requestBody:
+        description: Request Body
+        content:
+          '*/*':
+            schema:
+              type: object
+              properties:
+                IDCARDNUM:
+                  type: string
+                  example: "170063346"
+                IDCARDTYPE:
+                  type: string
+                  example: N
+                ID:
+                  type: string
+                  example: TEST0000
+                DESCS:
+                  type: string
+                  example: ""
+                SESSIONID:
+                  type: string
+                  example: 00000171-a18e-1102-0000-0171a18e110b
+        required: false
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ERRORCODE:
+                    type: integer
+                    example: 0
+                  ERRORDESC:
+                    type: string
+                    example: Transaction successfully!
+                  RESULT:
+                    type: object
+                    properties:
+                      RESULT:
+                        type: string
+                        example: Y
+      security:
+      - default:
+        - jgatewayrole
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+      x-codegen-request-body-name: Payload
+  /MB0007:
+    post:
+      tags:
+      - Deposit
+      summary: Transaction history by date time
+      description: The function will check transaction history by date time of a deposit
+        account.
+      requestBody:
+        description: Request Body
+        content:
+          '*/*':
+            schema:
+              type: object
+              properties:
+                ACCNUM:
+                  type: string
+                  example: "99990111100000217"
+                FROMDT:
+                  type: string
+                  example: 13/02/2020
+                TODT:
+                  type: string
+                  example: 13/02/2020
+                SRECORD:
+                  type: string
+                  example: "1"
+                MRECORD:
+                  type: string
+                  example: "10"
+                ID:
+                  type: string
+                  example: TEST0000
+                DESCS:
+                  type: string
+                  example: ""
+                SESSIONID:
+                  type: string
+                  example: 00000171-a18e-1102-0000-0171a18e110b
+        required: false
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ERRORCODE:
+                    type: integer
+                    example: 0
+                  ERRORDESC:
+                    type: string
+                    example: Transaction successfully!
+                  RESULT:
+                    type: object
+                    properties:
+                      TRANREF:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      TRANTYPE:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      TRANDATE:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      DEBIT:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      CREDIT:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      CURRENCYID:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      DESCRIPTION:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      CBSID:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      CHANNELID:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      BALANCE:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      FULLPAGE:
+                        type: string
+                        example: Y
+                      CLOSINGBALANCE:
+                        type: string
+                        example: "0"
+                      ACCNAME:
+                        type: string
+                        example: TestAccount01
+      security:
+      - default:
+        - jgatewayrole
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+      x-codegen-request-body-name: Payload
+  /MB0008:
+    post:
+      tags:
+      - Deposit
+      summary: Query customer information
+      description: The function is to query a customer information into CBS by customer
+        code
+      requestBody:
+        description: Request Body
+        content:
+          '*/*':
+            schema:
+              type: object
+              properties:
+                CUSCODE:
+                  type: string
+                  example: "02031000799"
+                ID:
+                  type: string
+                  example: TEST0000
+                DESCS:
+                  type: string
+                  example: ""
+                SESSIONID:
+                  type: string
+                  example: 00000171-a18e-1102-0000-0171a18e110b
+        required: false
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ERRORCODE:
+                    type: integer
+                    example: 0
+                  ERRORDESC:
+                    type: string
+                    example: Transaction successfully!
+                  RESULT:
+                    type: object
+                    properties:
+                      CUSNAME:
+                        type: string
+                        example: Tin sary
+                      BRANID:
+                        type: string
+                        example: "203"
+                      NATIONTYPE:
+                        type: string
+                        example: N
+                      NATIONNUM:
+                        type: string
+                        example: "170063346"
+                      DOB:
+                        type: string
+                        example: 07/06/1963
+                      TITLE:
+                        type: string
+                        example: MR
+                      EMAIL:
+                        type: string
+                        example: ""
+                      GENDER:
+                        type: string
+                        example: M
+                      PROVINCE:
+                        type: string
+                        example: ""
+                      DISTRICT:
+                        type: string
+                        example: ""
+                      COMMUNE:
+                        type: string
+                        example: ""
+                      VILLAGE:
+                        type: string
+                        example: ""
+                      GROUPNO:
+                        type: string
+                        example: ""
+                      STREETNO:
+                        type: string
+                        example: ""
+                      HOUSENO:
+                        type: string
+                        example: ""
+                      ADDRESSDETAIL:
+                        type: string
+                        example: ""
+                      HOMENUM:
+                        type: string
+                        example: "092564468"
+                      MOBILENUM:
+                        type: string
+                        example: "02133455543"
+                      KYC:
+                        type: string
+                        example: 1X
+                      CUSCODE:
+                        type: string
+                        example: "02031000799"
+      security:
+      - default:
+        - jgatewayrole
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+      x-codegen-request-body-name: Payload
+  /MB0009:
+    post:
+      tags:
+      - Deposit
+      summary: Query account information
+      description: The function is to query an account information by account number
+      requestBody:
+        description: Request Body
+        content:
+          '*/*':
+            schema:
+              type: object
+              properties:
+                ACCNUM:
+                  type: string
+                  example: "99990111100000217"
+                ID:
+                  type: string
+                  example: TEST0000
+                DESCS:
+                  type: string
+                  example: ""
+                SESSIONID:
+                  type: string
+                  example: 00000171-a18e-1102-0000-0171a18e110b
+        required: false
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ERRORCODE:
+                    type: integer
+                    example: 0
+                  ERRORDESC:
+                    type: string
+                    example: Transaction successfully!
+                  RESULT:
+                    type: object
+                    properties:
+                      CUSCODE:
+                        type: string
+                        example: "02031000799"
+                      ACCNAME:
+                        type: string
+                        example: Tin sary
+                      BRANID:
+                        type: string
+                        example: "203"
+                      CURRENCYID:
+                        type: string
+                        example: KHR
+                      STATUS:
+                        type: string
+                        example: N
+                      CUSTYPE:
+                        type: string
+                        example: C
+                      DPTTYPE:
+                        type: string
+                        example: C
+                      OPNDATE:
+                        type: string
+                        example: 14/09/2019
+                      BALANCE:
+                        type: string
+                        example: "1000"
+                      AVABALANCE:
+                        type: string
+                        example: "1000"
+                      LASTDATE:
+                        type: string
+                        example: 14/09/2019
+                      EMKBALANCE:
+                        type: string
+                        example: "0"
+                      CATCODE:
+                        type: string
+                        example: "11100"
+                      ACCTYPE:
+                        type: string
+                        example: "1"
+                      ISPKACNO:
+                        type: string
+                        example: Y
+                      TERM:
+                        type: string
+                        example: 2 Months
+                      ACCNUM:
+                        type: string
+                        example: "99990111100000217"
+      security:
+      - default:
+        - jgatewayrole
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+      x-codegen-request-body-name: Payload
+  /MB0010:
+    post:
+      tags:
+      - Deposit
+      summary: Fund transfer
+      description: "The function for fund transfer.\nONLY setting up one IFC used\
+        \ for this transaction.\nSupport for cross currency. Use CA rate in core banking\
+        \ for exchange money \n"
+      requestBody:
+        description: Request Body
+        content:
+          '*/*':
+            schema:
+              type: object
+              properties:
+                SESSIONID:
+                  type: string
+                  example: 00000171-a18e-1102-0000-0171a18e110b
+                CREDITACC:
+                  type: string
+                  example: "000000081"
+                DEBITACC:
+                  type: string
+                  example: "000000082"
+                AMT:
+                  type: string
+                  example: "10"
+                DEBITFEE:
+                  type: string
+                  example: "0"
+                CREDITFEE:
+                  type: string
+                  example: "0"
+                FEEACC:
+                  type: string
+                  example: "14080129650212"
+                ID:
+                  type: string
+                  example: BHD00009
+                DESCS:
+                  type: string
+                  example: Funds Transfer!
+        required: false
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ERRORCODE:
+                    type: integer
+                    example: 0
+                  ERRORDESC:
+                    type: string
+                    example: Transaction successfully!
+                  RESULT:
+                    type: object
+                    properties:
+                      CBSID:
+                        type: string
+                        example: "190914000008329776"
+                      DEBITACC:
+                        type: string
+                        example: "99990111100000255"
+                      DEBITAVABAL:
+                        type: string
+                        example: "1123202"
+                      DEBITBAL:
+                        type: string
+                        example: "1123202"
+                      DEBITEMKBAL:
+                        type: string
+                        example: "0"
+                      DEBITCCRCD:
+                        type: string
+                        example: KHR
+                      CREDITACC:
+                        type: string
+                        example: "99990111100000217"
+                      CREDITAVABAL:
+                        type: string
+                        example: "1020"
+                      CREDITBAL:
+                        type: string
+                        example: "1020"
+                      CREDITEMKBAL:
+                        type: string
+                        example: "0"
+                      CREDITCCRCD:
+                        type: string
+                        example: KHR
+      security:
+      - default:
+        - jgatewayrole
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+      x-codegen-request-body-name: Payload
+  /MB0011:
+    post:
+      tags:
+      - Deposit
+      summary: Get deposit product details
+      description: The function is to get deposit product details.
+      requestBody:
+        description: Request Body
+        content:
+          '*/*':
+            schema:
+              type: object
+              properties:
+                CATCODE:
+                  type: string
+                  example: "1234"
+                ID:
+                  type: string
+                  example: TEST0000
+                DESCS:
+                  type: string
+                  example: ""
+                SESSIONID:
+                  type: string
+                  example: 00000171-a18e-1102-0000-0171a18e110b
+        required: false
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ERRORCODE:
+                    type: integer
+                    example: 0
+                  ERRORDESC:
+                    type: string
+                    example: Transaction successfully!
+                  RESULT:
+                    type: object
+                    properties:
+                      CATNAME:
+                        type: string
+                        example: Saving 1
+                      STATUS:
+                        type: string
+                        example: N
+                      CURRENCYID:
+                        type: string
+                        example: KHR
+                      DPTTYPE:
+                        type: string
+                        example: C
+                      DPTCLS:
+                        type: string
+                        example: N
+                      INTRATE:
+                        type: string
+                        example: "5"
+                      TERM:
+                        type: string
+                        example: 2 Months
+                      MINBALANCE:
+                        type: string
+                        example: "10000"
+                      INITBALANCE:
+                        type: string
+                        example: "10000"
+      security:
+      - default:
+        - jgatewayrole
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+      x-codegen-request-body-name: Payload
+  /MB0012:
+    post:
+      tags:
+      - Deposit
+      summary: Register new customer
+      description: The function is to register a customer.
+      requestBody:
+        description: Request Body
+        content:
+          '*/*':
+            schema:
+              type: object
+              properties:
+                CUSNAME:
+                  type: string
+                  example: TestCustomer
+                BRANID:
+                  type: string
+                  example: "203"
+                NATIONTYPE:
+                  type: string
+                  example: N
+                NATIONNUM:
+                  type: string
+                  example: "123456789"
+                DOB:
+                  type: string
+                  example: 14/02/2000
+                TITLE:
+                  type: string
+                  example: MR
+                ADDRESS:
+                  type: string
+                  example: Test
+                EMAIL:
+                  type: string
+                  example: testcustomer@gmail.com
+                HOMENUM:
+                  type: string
+                  example: ""
+                MOBILENUM:
+                  type: string
+                  example: "092123456789"
+                GENDER:
+                  type: string
+                  example: M
+                CTYPE:
+                  type: string
+                  example: S
+                PROVINCE:
+                  type: string
+                  example: ""
+                DISTRICT:
+                  type: string
+                  example: ""
+                COMMUNE:
+                  type: string
+                  example: ""
+                VILLAGE:
+                  type: string
+                  example: ""
+                GRPNO:
+                  type: string
+                  example: ""
+                STRNO:
+                  type: string
+                  example: ""
+                HOUSENO:
+                  type: string
+                  example: ""
+                KYC:
+                  type: string
+                  example: 0X
+                DESCS:
+                  type: string
+                  example: ""
+                ID:
+                  type: string
+                  example: TEST
+                SESSIONID:
+                  type: string
+                  example: 00000171-a18e-1102-0000-0171a18e110b
+        required: false
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ERRORCODE:
+                    type: integer
+                    example: 0
+                  ERRORDESC:
+                    type: string
+                    example: Transaction successfully!
+                  RESULT:
+                    type: object
+                    properties:
+                      CUSCODE:
+                        type: string
+                        example: "02031000799"
+      security:
+      - default:
+        - jgatewayrole
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+      x-codegen-request-body-name: Payload
+  /MB0013:
+    post:
+      tags:
+      - Deposit
+      summary: Register new Account with existed Customer
+      description: "The function is to register a deposit account with customer code.\
+        \ \nSupport for multi currency.\nTransaction amount is based on the currency\
+        \ of the Catalogue.\nFee amount is based on the currency of the Catalogue.\n\
+        Using CA for buy and CB for sell.\n"
+      requestBody:
+        description: Request Body
+        content:
+          '*/*':
+            schema:
+              type: object
+              properties:
+                ACCNAME:
+                  type: string
+                  example: TestAccount
+                BRANID:
+                  type: string
+                  example: "9999"
+                CUSCODE:
+                  type: string
+                  example: "02031000799"
+                CATCODE:
+                  type: string
+                  example: "123"
+                ACCTYPE:
+                  type: string
+                  example: "1"
+                ISPKACNO:
+                  type: string
+                  example: Y
+                DEBITACC:
+                  type: string
+                  example: "999902345"
+                FEEACC:
+                  type: string
+                  example: "9990223429501"
+                AMT:
+                  type: string
+                  example: "1000"
+                FEEAMT:
+                  type: string
+                  example: "10"
+                DESCS:
+                  type: string
+                  example: ""
+                ID:
+                  type: string
+                  example: TEST
+                SESSIONID:
+                  type: string
+                  example: 00000171-a18e-1102-0000-0171a18e110b
+        required: false
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ERRORCODE:
+                    type: integer
+                    example: 0
+                  ERRORDESC:
+                    type: string
+                    example: Transaction successfully!
+                  RESULT:
+                    type: object
+                    properties:
+                      ACCNUM:
+                        type: string
+                        example: "999901111"
+      security:
+      - default:
+        - jgatewayrole
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+      x-codegen-request-body-name: Payload
+  /MB0014:
+    post:
+      tags:
+      - Deposit
+      summary: Get the latest exchange rate
+      description: The function is to get the latest exchange rate of currencies
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ERRORCODE:
+                    type: integer
+                    example: 0
+                  ERRORDESC:
+                    type: string
+                    example: Transaction successfully!
+                  RESULT:
+                    type: object
+                    properties:
+                      CURRENCY:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      BKRATE:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      TBRATE:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      TARATE:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      CBRATE:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      CARATE:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      CMRATE:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      CSRATE:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      INRATE:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+                      JPRATE:
+                        type: array
+                        items:
+                          type: string
+                          example: ""
+      security:
+      - default:
+        - jgatewayrole
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  /MB1000:
+    post:
+      tags:
+      - Deposit
+      summary: Upload Image API
+      description: Upload Image Api by using base64string
+      requestBody:
+        description: Request Body
+        content:
+          '*/*':
+            schema:
+              type: object
+              properties:
+                CUSCODE:
+                  type: string
+                  example: "02031000799"
+                FILETYPE:
+                  type: string
+                  example: PNG
+                BASE64STRING:
+                  type: string
+                  example: iVBORw0KGgoAAAANSUhEUgAAANIAAAAzCAYAAADigVZlAAAQN0lEQVR4nO2dCXQTxxnHl0LT5jVteHlN+5q+JCKBJITLmHIfKzBHHCCYBAiEw+I2GIMhDQ0kqQolIRc1SV5e+prmqX3JawgQDL64bK8x2Ajb2Bg7NuBjjSXftmRZhyXZ1nZG1eL1eGa1kg2iyua9X2TvzvHNN/Ofb2Z2ZSiO4ygZGZm+EXADZGSCgYAbICMTDATcABmZYCDgBsjIBAMBN0BGJhgIuAEyMsGA1wQdHZ1UV1cX5XK5qM7OzgcMRuNTrSbTEraq6strhdfzruTk5Wpz8q5c1l7Jyb6szc3K1l7RggtFxcWX2dvVB02mtmVOp3NIV2fnQFie2WyB5QS84TIy/YnXBFBI8BMM/pDqat0XzIVM08lTSVxyytn6jAuZV4FuzmtzclJz8/LT8vML0nJzr54HYkpLS88oTkxMMZ48mchlXrxUX1ffcBCUM8xms8lCkgk6pCT6aZvZvCrzYpbu2PfxHAg8l+obGmOt1vaJQBAPkvI5nM5fWyyWWTU1tfuA+IqOHDvGgehVCK4pA91oGZn+xluCAc0thtj4hCT72XOp9S0thi2FBQWPvb13z9RN61QH5s8NYxbMDct7KXyudt7MGeeWLFrwn8iVKz7auDZy3Z7dbzz91p43B8ZsjYLlDKmprd3/ffwpLjWNqbW32xcFuuEyMv2J2M1BJpMpKiExxZKZeamira1tvvqdt8OWL1l8asq4kNbRzz7NTRo7uuMPo4Y7Rz/zFBc64lluzHNDuZFDFe5PICx25/aY2B3bogf/dd9fKCA+CuytohOSkjuyLmtLXRwXGujGy8j0F8Qbdrt9bDpzQQ8jSHl5+dLt0VsOThgzwj7i6Se5kOHDuIljR9mXRrykjZj/wlVeSONHP8+FhykrJoeOsY8aNoQLAYJa9erShIPvvRsKhQTK/YleX3Pw5KlErpKt+iLQjZeR6S9IN35VXl75r3gw4HU6/Z6ojes/gMKAUQiKBQKiUvvLC1/MXL18WcKsaZOrJ4WObly7euUJsOQ7FjZ9Sh2IVC4oLhihZk6d1LB5/dpt+9R/hnuq4Xl5VwvT0jLKXS7XOHgaCAm0I2Rk+gL2os1mewXsiUw5uXlZn8T9LVI5ZWI1jEQTxozkgECgkDrmKqfrFy8ILwJ7om+3bNoQumTRwtDoqE0fTBsf2ggwg+jVBdOCT7eYwGfnti2bQXA6ME2nr9mbnHLOWV
+                SESSIONID:
+                  type: string
+                  example: 00000170-38b1-876b-0000-017038b18774
+        required: false
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ERRORCODE:
+                    type: integer
+                    example: 0
+                  ERRORDESC:
+                    type: string
+                    example: Transaction successfully!
+                  RESULT:
+                    type: string
+                    example: ""
+      security:
+      - default:
+        - jgatewayrole
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+      x-codegen-request-body-name: Payload
+components:
+  securitySchemes:
+    default:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://192.168.1.244:8243/token
+          scopes:
+            jgatewayrole: Role for this
+      x-scopes-bindings:
+        jgatewayrole: jgatewayrole
+x-wso2-auth-header: Authorization
+x-wso2-cors:
+  corsConfigurationEnabled: false
+  accessControlAllowOrigins:
+  - '*'
+  accessControlAllowCredentials: false
+  accessControlAllowHeaders:
+  - authorization
+  - Access-Control-Allow-Origin
+  - Content-Type
+  - SOAPAction
+  accessControlAllowMethods:
+  - GET
+  - PUT
+  - POST
+  - DELETE
+  - PATCH
+  - OPTIONS
+x-wso2-production-endpoints:
+  urls:
+  - http://192.168.1.228:8787/call
+  type: http
+x-wso2-sandbox-endpoints:
+  urls:
+  - http://192.168.1.228:8787/call
+  type: http
+x-wso2-basePath: /mb/1.0.0
+x-wso2-transports:
+- http
+- https
